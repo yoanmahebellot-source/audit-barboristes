@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Audit visibilité IA · Les Barboristes</title>
+<style>
+:root{--bg:#f3f5f7;--surface:#fff;--surface-2:#eaeef2;--fg:#16212c;--muted:#5b6977;--line:#d5dce3;--accent:#1d4f7a;--accent-soft:#dbe8f3;
+--ok:#1f7a4d;--ok-bg:#d6eee0;--mid:#9a6a00;--mid-bg:#f6e6bd;--bad:#b0382f;--bad-bg:#f6d9d5;--nm:#7b8794;--nm-bg:#e4e8ec;
+--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0f161d;--surface:#17212b;--surface-2:#1f2b37;--fg:#e6ecf2;--muted:#9aa8b6;--line:#2d3b49;--accent:#7fb2dc;--accent-soft:#1d3447;
+--ok:#5fcf93;--ok-bg:#16402b;--mid:#e6b94d;--mid-bg:#463511;--bad:#f08a80;--bad-bg:#4a1f1b;--nm:#8a97a4;--nm-bg:#26313c;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:14px;line-height:1.5;padding:24px 16px}
+.wrap{max-width:1000px;margin-inline:auto;display:flex;flex-direction:column;gap:20px}
+h1{font-size:22px;font-weight:600;margin:0;text-wrap:balance}
+h2{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+p{margin:0}.sub,.foot{color:var(--muted);font-size:12px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0}
+.kpi .l{font-size:12px;color:var(--muted)}.kpi .v{font-family:var(--mono);font-size:28px;font-weight:500;line-height:1.2;margin-top:2px}.kpi .n{font-size:12px;color:var(--muted);margin-top:2px}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:1px 8px;border-radius:999px}.pill.ok{background:var(--ok-bg);color:var(--ok)}.pill.mid{background:var(--mid-bg);color:var(--mid)}.pill.bad{background:var(--bad-bg);color:var(--bad)}
+.bar{height:8px;border-radius:4px;background:var(--surface-2);position:relative;margin-top:8px}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--ok)}.bar b{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--fg)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px}@media (max-width:820px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.chip{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:4px 10px;border-radius:999px;cursor:pointer}.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+table.m{min-width:520px;border-collapse:separate;border-spacing:0}
+table.m th{font-size:11px;font-weight:600;color:var(--muted);text-align:center;padding:4px 6px}table.m th:first-child{text-align:left}
+table.m td{padding:3px;border-top:1px solid var(--line);vertical-align:middle}table.m td.q{padding:6px 8px 6px 0;font-size:13px}table.m td.q small{display:block;color:var(--muted);font-size:11px}
+.cell{display:flex;align-items:center;justify-content:center;width:100%;min-width:44px;height:30px;border-radius:4px;font-family:var(--mono);font-size:13px;font-weight:500}
+.s2{background:var(--ok-bg);color:var(--ok)}.s1{background:var(--mid-bg);color:var(--mid)}.s0{background:var(--bad-bg);color:var(--bad)}
+.snm{background:repeating-linear-gradient(135deg,var(--nm-bg) 0 4px,transparent 4px 8px);color:var(--nm);border:1px dashed var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin-top:10px}.legend span{display:inline-flex;align-items:center;gap:6px}.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.eng{display:grid;gap:14px}.eng .r{display:grid;grid-template-columns:90px minmax(0,1fr) 54px;gap:10px;align-items:center}
+.stack{display:flex;height:18px;border-radius:3px;overflow:hidden;background:var(--surface-2)}.stack i{display:block;height:100%}
+.stack .a{background:var(--ok)}.stack .b{background:var(--mid)}.stack .c{background:var(--bad)}.stack .d{background:repeating-linear-gradient(135deg,var(--nm-bg) 0 4px,var(--surface-2) 4px 8px)}
+.nm2{font-size:13px;font-weight:500}.tot{font-family:var(--mono);font-size:12px;text-align:right;color:var(--muted)}
+table.t{font-size:13px}table.t th,table.t td{padding:6px 8px;text-align:left;border-top:1px solid var(--line)}table.t th{font-size:11px;color:var(--muted);font-weight:600;border-top:0;padding-top:0}
+table.t .num{text-align:right;font-family:var(--mono)}
+.dl{font-family:var(--mono);font-size:12px;padding:1px 6px;border-radius:4px;white-space:nowrap}.dl.up{background:var(--ok-bg);color:var(--ok)}.dl.down{background:var(--bad-bg);color:var(--bad)}
+.list{margin:0;padding:0;list-style:none;display:grid;gap:10px}.list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;font-size:13px}
+.tag{font-size:11px;font-weight:600;padding:1px 8px;border-radius:4px;height:fit-content;background:var(--accent-soft);color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="h1">Visibilité de Les Barboristes dans les réponses des IA</h1>
+    <p class="sub" id="sub"></p>
+  </header>
+  <section class="kpis" id="kpis"></section>
+  <section class="panel">
+    <h2>Requêtes testées et notes par moteur</h2>
+    <div class="chips" id="chips" role="group" aria-label="Filtrer par type de requête"></div>
+    <div class="scroll"><table class="m" id="matrix"></table></div>
+    <div class="legend">
+      <span><i class="sw s2"></i>2 · le site lesbarboristes.fr est cité comme source</span>
+      <span><i class="sw s1"></i>1 · la marque est citée, sans source du site</span>
+      <span><i class="sw s0"></i>0 · la marque est absente</span>
+      <span><i class="sw snm"></i>non mesuré</span>
+    </div>
+  </section>
+  <section class="grid2">
+    <div class="panel"><h2>Répartition des notes par moteur</h2><div class="eng" id="eng"></div><p class="foot" style="margin-top:12px">Colonne de droite : nombre de 2 · 1 · 0. Hachuré : non mesuré.</p></div>
+    <div class="panel"><h2>Taux de note 2 par type de requête</h2><div class="scroll"><table class="t" id="types"></table></div></div>
+  </section>
+  <section class="grid2">
+    <div class="panel"><h2>Ce qui a changé depuis le relevé précédent</h2><div class="scroll"><table class="t" id="chg"></table></div></div>
+    <div class="panel"><h2>Historique des relevés</h2><div class="scroll"><table class="t" id="hist"></table></div></div>
+  </section>
+  <section class="panel"><h2>Actions recommandées</h2><ul class="list" id="acts"></ul></section>
+  <p class="foot" id="foot"></p>
+</div>
+<script>
+var ENG=["ChatGPT","Perplexity","Gemini","Google AIO"];
+var QMETA=[[1, "Découverte locale", "meilleur barbier Boulogne-Billancourt"], [2, "Découverte locale", "coiffeur homme Rueil-Malmaison"], [3, "Découverte locale", "meilleur barbier Levallois-Perret"], [4, "Découverte locale", "barbier Paris 19e"], [5, "Prestation", "barbier Vincennes rasage à l'ancienne"], [6, "Prestation", "coloration barbe Antony"], [7, "Prestation", "taille de barbe Boulogne-Billancourt"], [8, "Prestation", "rasage à l'ancienne Paris 19e"], [9, "Prix", "combien coûte un rasage au coupe-chou à Paris"], [10, "Prix", "prix coupe homme Boulogne-Billancourt"], [11, "Prix", "tarif taille de barbe Vincennes"], [12, "Prix", "prix coupe et barbe coiffeur Antony"], [13, "Marque", "Les Barboristes avis"], [14, "Marque", "Les Barboristes horaires Vincennes"], [15, "Marque", "Les Barboristes Boulogne adresse"], [16, "Marque", "Les Barboristes franchise"], [17, "Cadeau / B2B", "idée cadeau barbier homme"], [18, "Cadeau / B2B", "carte cadeau coiffeur homme Paris"], [19, "Cadeau / B2B", "barbier pour événement d'entreprise Paris"], [20, "Cadeau / B2B", "animation barbier soirée entreprise Île-de-France"]];
+var SCANS=[{"month": "octobre 2026", "label": "15/10/2026 · audit de départ", "date": "2026-10-15", "kind": "partial", "best": {"1": 0, "5": 1, "13": 1}, "footnote": "Une note 2 sur ChatGPT et Gemini suppose un lien visible vers lesbarboristes.fr : les sources repliées peuvent faire sous-estimer les résultats. Les cases hachurées n'ont pas été mesurées.", "actions": [], "rows": []}, {"month": "novembre 2026", "label": "03/11/2026 · relevé de novembre", "date": "2026-11-03", "kind": "full", "footnote": "Une note 2 sur ChatGPT et Gemini suppose un lien visible vers lesbarboristes.fr : les sources repliées peuvent faire sous-estimer les résultats. Les cases hachurées n'ont pas été mesurées.", "actions": [["1", "Aligner horaires, adresses et nombre d'avis entre Planity, la fiche Google et le site, d'abord Vincennes et Boulogne."], ["2", "Créer une page « offrir une carte cadeau » séparée de /reservation/, pour les requêtes cadeau (0 sur 3 moteurs)."], ["3", "Renforcer les pages Levallois et Paris 19e (prix, rasage, avis) et ajouter les prix par ville sur /prestations-tarifs/, surtout Boulogne."]], "rows": [{"n": 1, "s": [1, 0, 1, 2]}, {"n": 2, "s": [1, 2, null, 2]}, {"n": 3, "s": [1, 0, 1, 1]}, {"n": 4, "s": [1, 2, null, 2]}, {"n": 5, "s": [2, 2, null, 2]}, {"n": 6, "s": [1, 2, null, 2]}, {"n": 7, "s": [1, 0, null, 2]}, {"n": 8, "s": [2, 2, null, 2]}, {"n": 9, "s": [0, 0, null, 2]}, {"n": 10, "s": [2, 2, null, 0]}, {"n": 11, "s": [2, 2, null, 2]}, {"n": 12, "s": [1, 2, null, 2]}, {"n": 13, "s": [2, 1, null, 1]}, {"n": 14, "s": [2, 2, null, 2]}, {"n": 15, "s": [2, 2, null, 2]}, {"n": 16, "s": [2, 2, null, 2]}, {"n": 17, "s": [0, 0, null, 0]}, {"n": 18, "s": [0, 0, null, 0]}, {"n": 19, "s": [0, 2, null, 1]}, {"n": 20, "s": [0, 2, null, 1]}]}];
+var TYPES=["Tous","Découverte locale","Prestation","Prix","Marque","Cadeau / B2B"];
+var $=function(i){return document.getElementById(i)};
+function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function fmt(d){var p=(d||"").split("-");return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:d}
+function cls(v){return v==null?"snm":"s"+v}function lab(v){return v==null?"–":String(v)}
+SCANS.sort(function(a,b){return a.date<b.date?-1:1});
+SCANS.forEach(function(s){s.eng={};(s.rows||[]).forEach(function(r){s.eng[r.n]=r.s})});
+var FULL=SCANS.filter(function(s){return s.kind==="full"&&Object.keys(s.eng).length});
+var L=FULL[FULL.length-1],P=SCANS.filter(function(s){return L&&s.date<L.date}).pop();
+var filter="Tous";
+function best(s,n){if(s.best&&s.best[n]!==undefined)return s.best[n];var a=s.eng[n];if(!a)return null;var m=null;a.forEach(function(v){if(v!=null&&(m==null||v>m))m=v});return m}
+function rowsOf(){return QMETA.map(function(m){return [m[0],m[1],m[2],(L&&L.eng[m[0]])||[null,null,null,null]]})}
+function objRate(s){
+  var obj=QMETA.filter(function(m){return m[1]==="Marque"||m[1]==="Découverte locale"});
+  var cov=ENG.map(function(e,i){return QMETA.filter(function(m){var a=s.eng[m[0]];return a&&a[i]!=null}).length});
+  var n2=0,n=0;obj.forEach(function(m){var a=s.eng[m[0]];if(!a)return;a.forEach(function(v,i){if(cov[i]>=QMETA.length/2&&v!=null){n++;if(v===2)n2++}})});
+  return {n2:n2,n:n,rate:n?Math.round(100*n2/n):0};
+}
+function total2(s){var c=0,m=0;QMETA.forEach(function(q){var a=s.eng[q[0]];if(a)a.forEach(function(v){if(v!=null){m++;if(v===2)c++}})});return [c,m]}
+function head(){
+  if(!L){$("sub").textContent="Aucun relevé disponible.";return}
+  $("h1").textContent="Visibilité de Les Barboristes dans les réponses des IA, "+(L.month||L.label);
+  $("sub").textContent="lesbarboristes.fr · "+QMETA.length+" requêtes · ChatGPT, Perplexity, Gemini, Google AI Overview · relevé du "+fmt(L.date);
+  $("foot").textContent=(L.footnote||"")+" Mise à jour automatique chaque mois.";
+}
+function kpis(){
+  if(!L)return;var o=objRate(L),t=total2(L),h="";
+  h+='<div class="kpi"><div class="l">Objectif : note 2 dans au moins la moitié des réponses</div><div class="v">'+o.rate+' %</div><div class="n">'+o.n2+' sur '+o.n+' réponses (marque et recherche locale) <span class="pill '+(o.rate>=50?'ok':'mid')+'">'+(o.rate>=50?'atteint':'à atteindre')+'</span></div><div class="bar"><i style="width:'+o.rate+'%"></i><b style="left:50%"></b></div></div>';
+  h+='<div class="kpi"><div class="l">Réponses citant lesbarboristes.fr en source</div><div class="v">'+t[0]+'<span style="font-size:16px;color:var(--muted)"> / '+t[1]+'</span></div><div class="n">'+(t[1]?Math.round(100*t[0]/t[1]):0)+' % des réponses mesurées</div></div>';
+  if(P){var up=0,dn=0;QMETA.forEach(function(m){var a=best(P,m[0]),b=best(L,m[0]);if(a!=null&&b!=null){if(b>a)up++;else if(b<a)dn++}});
+    h+='<div class="kpi"><div class="l">Évolution vs '+esc(P.label.split(" · ")[0])+'</div><div class="v"><span style="color:var(--ok)">+'+up+'</span> <span style="color:var(--bad);font-size:20px">−'+dn+'</span></div><div class="n">requêtes en progression · en baisse</div></div>'}
+  $("kpis").innerHTML=h;
+}
+function chips(){
+  $("chips").innerHTML=TYPES.map(function(t){return '<button class="chip" aria-pressed="'+(t===filter)+'" data-t="'+t+'">'+t+'</button>'}).join("");
+  Array.prototype.forEach.call($("chips").children,function(b){b.onclick=function(){filter=b.getAttribute("data-t");chips();matrix();summ()}});
+}
+function matrix(){
+  var h='<thead><tr><th>Requête</th>'+ENG.map(function(e){return '<th>'+e+'</th>'}).join("")+'</tr></thead><tbody>';
+  rowsOf().filter(function(r){return filter==="Tous"||r[1]===filter}).forEach(function(r){
+    h+='<tr><td class="q">'+esc(r[2])+'<small>'+r[1]+'</small></td>'+r[3].map(function(v,i){return '<td><span class="cell '+cls(v)+'" role="img" aria-label="'+ENG[i]+', '+(v==null?'non mesuré':'note '+v)+'">'+lab(v)+'</span></td>'}).join("")+'</tr>';
+  });
+  $("matrix").innerHTML=h+'</tbody>';
+}
+function summ(){
+  var rows=rowsOf().filter(function(r){return filter==="Tous"||r[1]===filter}),n=rows.length||1;
+  $("eng").innerHTML=ENG.map(function(e,i){
+    var c={2:0,1:0,0:0,nm:0};rows.forEach(function(r){var v=r[3][i];if(v==null)c.nm++;else c[v]++});
+    function w(k){return (100*c[k]/n)+"%"}
+    return '<div class="r"><span class="nm2">'+e+'</span><div class="stack" role="img" aria-label="'+e+' : '+c[2]+' notes 2, '+c[1]+' notes 1, '+c[0]+' notes 0, '+c.nm+' non mesurées"><i class="a" style="width:'+w(2)+'"></i><i class="b" style="width:'+w(1)+'"></i><i class="c" style="width:'+w(0)+'"></i><i class="d" style="width:'+w("nm")+'"></i></div><span class="tot">'+c[2]+'·'+c[1]+'·'+c[0]+'</span></div>';
+  }).join("");
+}
+function types(){
+  var h='<thead><tr><th>Type</th><th class="num">Requêtes</th><th class="num">Note 2</th><th class="num">Taux</th></tr></thead><tbody>';
+  TYPES.slice(1).forEach(function(t){
+    var rows=rowsOf().filter(function(r){return r[1]===t}),m=0,c=0;
+    rows.forEach(function(r){r[3].forEach(function(v){if(v!=null){m++;if(v===2)c++}})});
+    var p=m?Math.round(100*c/m):0;
+    h+='<tr><td>'+t+'</td><td class="num">'+rows.length+'</td><td class="num">'+c+' / '+m+'</td><td class="num"><span class="pill '+(p>=50?'ok':p>=30?'mid':'bad')+'">'+p+' %</span></td></tr>';
+  });
+  $("types").innerHTML=h+'</tbody>';
+}
+function chg(){
+  if(!P||!L){$("chg").innerHTML='<tbody><tr><td class="foot">Premier relevé : pas encore de comparaison.</td></tr></tbody>';return}
+  var h='<thead><tr><th>Requête</th><th>Avant</th><th>Après</th><th></th></tr></thead><tbody>',k=0;
+  QMETA.forEach(function(m){var a=best(P,m[0]),b=best(L,m[0]);if(a!=null&&b!=null&&a!==b){k++;var d=b-a;
+    h+='<tr><td>'+esc(m[2])+'</td><td class="num">'+a+'</td><td class="num">'+b+'</td><td><span class="dl '+(d>0?'up':'down')+'">'+(d>0?'+':'')+d+'</span></td></tr>'}});
+  if(!k)h+='<tr><td colspan="4" class="foot">Aucun changement sur les requêtes mesurées dans les deux relevés.</td></tr>';
+  $("chg").innerHTML=h+'</tbody>';
+}
+function hist(){
+  var h='<thead><tr><th>Relevé</th><th class="num">Notes 2</th><th class="num">Objectif</th></tr></thead><tbody>';
+  SCANS.slice().reverse().forEach(function(s){
+    if(s.kind==="full"&&Object.keys(s.eng).length){var t=total2(s),o=objRate(s);h+='<tr><td>'+esc(s.label)+'</td><td class="num">'+t[0]+' / '+t[1]+'</td><td class="num">'+o.rate+' %</td></tr>'}
+    else h+='<tr><td>'+esc(s.label)+'</td><td class="num" colspan="2" style="color:var(--muted)">relevé partiel</td></tr>';
+  });
+  $("hist").innerHTML=h+'</tbody>';
+}
+function acts(){
+  var A=(L&&L.actions)||[];
+  $("acts").innerHTML=A.length?A.map(function(x){return '<li><span class="tag">'+esc(x[0])+'</span><span>'+esc(x[1])+'</span></li>'}).join(""):'<li class="foot">Aucune action enregistrée.</li>';
+}
+head();kpis();chips();matrix();summ();types();chg();hist();acts();
+</script>
+</body>
+</html>

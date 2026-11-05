@@ -1,0 +1,203 @@
+{
+ "month": "novembre 2026",
+ "label": "03/11/2026 · relevé de novembre",
+ "date": "2026-11-03",
+ "kind": "full",
+ "footnote": "Une note 2 sur ChatGPT et Gemini suppose un lien visible vers lesbarboristes.fr : les sources repliées peuvent faire sous-estimer les résultats. Les cases hachurées n'ont pas été mesurées.",
+ "actions": [
+  [
+   "1",
+   "Aligner horaires, adresses et nombre d'avis entre Planity, la fiche Google et le site, d'abord Vincennes et Boulogne."
+  ],
+  [
+   "2",
+   "Créer une page « offrir une carte cadeau » séparée de /reservation/, pour les requêtes cadeau (0 sur 3 moteurs)."
+  ],
+  [
+   "3",
+   "Renforcer les pages Levallois et Paris 19e (prix, rasage, avis) et ajouter les prix par ville sur /prestations-tarifs/, surtout Boulogne."
+  ]
+ ],
+ "rows": [
+  {
+   "n": 1,
+   "s": [
+    1,
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "n": 2,
+   "s": [
+    1,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 3,
+   "s": [
+    1,
+    0,
+    1,
+    1
+   ]
+  },
+  {
+   "n": 4,
+   "s": [
+    1,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 5,
+   "s": [
+    2,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 6,
+   "s": [
+    1,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 7,
+   "s": [
+    1,
+    0,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 8,
+   "s": [
+    2,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 9,
+   "s": [
+    0,
+    0,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 10,
+   "s": [
+    2,
+    2,
+    null,
+    0
+   ]
+  },
+  {
+   "n": 11,
+   "s": [
+    2,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 12,
+   "s": [
+    1,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 13,
+   "s": [
+    2,
+    1,
+    null,
+    1
+   ]
+  },
+  {
+   "n": 14,
+   "s": [
+    2,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 15,
+   "s": [
+    2,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 16,
+   "s": [
+    2,
+    2,
+    null,
+    2
+   ]
+  },
+  {
+   "n": 17,
+   "s": [
+    0,
+    0,
+    null,
+    0
+   ]
+  },
+  {
+   "n": 18,
+   "s": [
+    0,
+    0,
+    null,
+    0
+   ]
+  },
+  {
+   "n": 19,
+   "s": [
+    0,
+    2,
+    null,
+    1
+   ]
+  },
+  {
+   "n": 20,
+   "s": [
+    0,
+    2,
+    null,
+    1
+   ]
+  }
+ ]
+}

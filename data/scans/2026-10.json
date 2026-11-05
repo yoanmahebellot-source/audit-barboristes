@@ -1,0 +1,14 @@
+{
+ "month": "octobre 2026",
+ "label": "15/10/2026 · audit de départ",
+ "date": "2026-10-15",
+ "kind": "partial",
+ "best": {
+  "1": 0,
+  "5": 1,
+  "13": 1
+ },
+ "footnote": "Une note 2 sur ChatGPT et Gemini suppose un lien visible vers lesbarboristes.fr : les sources repliées peuvent faire sous-estimer les résultats. Les cases hachurées n'ont pas été mesurées.",
+ "actions": [],
+ "rows": []
+}
