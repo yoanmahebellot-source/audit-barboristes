@@ -73,13 +73,12 @@ table.t .num{text-align:right;font-family:var(--mono)}
     <div class="panel"><h2>Ce qui a changé depuis le relevé précédent</h2><div class="scroll"><table class="t" id="chg"></table></div></div>
     <div class="panel"><h2>Historique des relevés</h2><div class="scroll"><table class="t" id="hist"></table></div></div>
   </section>
-  <section class="panel"><h2>Actions recommandées</h2><ul class="list" id="acts"></ul></section>
   <p class="foot" id="foot"></p>
 </div>
 <script>
 var ENG=["ChatGPT","Perplexity","Gemini","Google AIO"];
 var QMETA=[[1, "Découverte locale", "meilleur barbier Boulogne-Billancourt"], [2, "Découverte locale", "coiffeur homme Rueil-Malmaison"], [3, "Découverte locale", "meilleur barbier Levallois-Perret"], [4, "Découverte locale", "barbier Paris 19e"], [5, "Prestation", "barbier Vincennes rasage à l'ancienne"], [6, "Prestation", "coloration barbe Antony"], [7, "Prestation", "taille de barbe Boulogne-Billancourt"], [8, "Prestation", "rasage à l'ancienne Paris 19e"], [9, "Prix", "combien coûte un rasage au coupe-chou à Paris"], [10, "Prix", "prix coupe homme Boulogne-Billancourt"], [11, "Prix", "tarif taille de barbe Vincennes"], [12, "Prix", "prix coupe et barbe coiffeur Antony"], [13, "Marque", "Les Barboristes avis"], [14, "Marque", "Les Barboristes horaires Vincennes"], [15, "Marque", "Les Barboristes Boulogne adresse"], [16, "Marque", "Les Barboristes franchise"], [17, "Cadeau / B2B", "idée cadeau barbier homme"], [18, "Cadeau / B2B", "carte cadeau coiffeur homme Paris"], [19, "Cadeau / B2B", "barbier pour événement d'entreprise Paris"], [20, "Cadeau / B2B", "animation barbier soirée entreprise Île-de-France"]];
-var SCANS=[{"month": "octobre 2026", "label": "15/10/2026 · audit de départ", "date": "2026-10-15", "kind": "partial", "best": {"1": 0, "5": 1, "13": 1}, "footnote": "Une note 2 sur ChatGPT et Gemini suppose un lien visible vers lesbarboristes.fr : les sources repliées peuvent faire sous-estimer les résultats. Les cases hachurées n'ont pas été mesurées.", "actions": [], "rows": []}, {"month": "novembre 2026", "label": "03/11/2026 · relevé de novembre", "date": "2026-11-03", "kind": "full", "footnote": "Une note 2 sur ChatGPT et Gemini suppose un lien visible vers lesbarboristes.fr : les sources repliées peuvent faire sous-estimer les résultats. Les cases hachurées n'ont pas été mesurées.", "actions": [["1", "Aligner horaires, adresses et nombre d'avis entre Planity, la fiche Google et le site, d'abord Vincennes et Boulogne."], ["2", "Créer une page « offrir une carte cadeau » séparée de /reservation/, pour les requêtes cadeau (0 sur 3 moteurs)."], ["3", "Renforcer les pages Levallois et Paris 19e (prix, rasage, avis) et ajouter les prix par ville sur /prestations-tarifs/, surtout Boulogne."]], "rows": [{"n": 1, "s": [1, 0, 1, 2]}, {"n": 2, "s": [1, 2, null, 2]}, {"n": 3, "s": [1, 0, 1, 1]}, {"n": 4, "s": [1, 2, null, 2]}, {"n": 5, "s": [2, 2, null, 2]}, {"n": 6, "s": [1, 2, null, 2]}, {"n": 7, "s": [1, 0, null, 2]}, {"n": 8, "s": [2, 2, null, 2]}, {"n": 9, "s": [0, 0, null, 2]}, {"n": 10, "s": [2, 2, null, 0]}, {"n": 11, "s": [2, 2, null, 2]}, {"n": 12, "s": [1, 2, null, 2]}, {"n": 13, "s": [2, 1, null, 1]}, {"n": 14, "s": [2, 2, null, 2]}, {"n": 15, "s": [2, 2, null, 2]}, {"n": 16, "s": [2, 2, null, 2]}, {"n": 17, "s": [0, 0, null, 0]}, {"n": 18, "s": [0, 0, null, 0]}, {"n": 19, "s": [0, 2, null, 1]}, {"n": 20, "s": [0, 2, null, 1]}]}];
+var SCANS=[{"month": "octobre 2026", "label": "15/10/2026 · audit de départ", "date": "2026-10-15", "kind": "partial", "best": {"1": 0, "5": 1, "13": 1}, "footnote": "Une note 2 sur ChatGPT et Gemini suppose un lien visible vers lesbarboristes.fr : les sources repliées peuvent faire sous-estimer les résultats. Les cases hachurées n'ont pas été mesurées.", "rows": []}, {"month": "novembre 2026", "label": "03/11/2026 · relevé de novembre", "date": "2026-11-03", "kind": "full", "footnote": "Une note 2 sur ChatGPT et Gemini suppose un lien visible vers lesbarboristes.fr : les sources repliées peuvent faire sous-estimer les résultats. Les cases hachurées n'ont pas été mesurées.", "rows": [{"n": 1, "s": [1, 0, 1, 2]}, {"n": 2, "s": [1, 2, null, 2]}, {"n": 3, "s": [1, 0, 1, 1]}, {"n": 4, "s": [1, 2, null, 2]}, {"n": 5, "s": [2, 2, null, 2]}, {"n": 6, "s": [1, 2, null, 2]}, {"n": 7, "s": [1, 0, null, 2]}, {"n": 8, "s": [2, 2, null, 2]}, {"n": 9, "s": [0, 0, null, 2]}, {"n": 10, "s": [2, 2, null, 0]}, {"n": 11, "s": [2, 2, null, 2]}, {"n": 12, "s": [1, 2, null, 2]}, {"n": 13, "s": [2, 1, null, 1]}, {"n": 14, "s": [2, 2, null, 2]}, {"n": 15, "s": [2, 2, null, 2]}, {"n": 16, "s": [2, 2, null, 2]}, {"n": 17, "s": [0, 0, null, 0]}, {"n": 18, "s": [0, 0, null, 0]}, {"n": 19, "s": [0, 2, null, 1]}, {"n": 20, "s": [0, 2, null, 1]}]}];
 var TYPES=["Tous","Découverte locale","Prestation","Prix","Marque","Cadeau / B2B"];
 var $=function(i){return document.getElementById(i)};
 function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -158,11 +157,7 @@ function hist(){
   });
   $("hist").innerHTML=h+'</tbody>';
 }
-function acts(){
-  var A=(L&&L.actions)||[];
-  $("acts").innerHTML=A.length?A.map(function(x){return '<li><span class="tag">'+esc(x[0])+'</span><span>'+esc(x[1])+'</span></li>'}).join(""):'<li class="foot">Aucune action enregistrée.</li>';
-}
-head();kpis();chips();matrix();summ();types();chg();hist();acts();
+head();kpis();chips();matrix();summ();types();chg();hist();
 </script>
 </body>
 </html>

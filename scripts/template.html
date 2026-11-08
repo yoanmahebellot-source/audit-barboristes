@@ -73,7 +73,6 @@ table.t .num{text-align:right;font-family:var(--mono)}
     <div class="panel"><h2>Ce qui a changé depuis le relevé précédent</h2><div class="scroll"><table class="t" id="chg"></table></div></div>
     <div class="panel"><h2>Historique des relevés</h2><div class="scroll"><table class="t" id="hist"></table></div></div>
   </section>
-  <section class="panel"><h2>Actions recommandées</h2><ul class="list" id="acts"></ul></section>
   <p class="foot" id="foot"></p>
 </div>
 <script>
@@ -158,11 +157,7 @@ function hist(){
   });
   $("hist").innerHTML=h+'</tbody>';
 }
-function acts(){
-  var A=(L&&L.actions)||[];
-  $("acts").innerHTML=A.length?A.map(function(x){return '<li><span class="tag">'+esc(x[0])+'</span><span>'+esc(x[1])+'</span></li>'}).join(""):'<li class="foot">Aucune action enregistrée.</li>';
-}
-head();kpis();chips();matrix();summ();types();chg();hist();acts();
+head();kpis();chips();matrix();summ();types();chg();hist();
 </script>
 </body>
 </html>

@@ -18,7 +18,6 @@ def clean(doc):
     if doc.get("best"):
         out["best"] = doc["best"]
     out["footnote"] = doc.get("client_footnote") or DEFAULT_NOTE
-    out["actions"] = [[str(a[0]), str(a[1])] for a in doc.get("actions", [])][:5]
     out["rows"] = [{"n": int(r["n"]), "s": r["s"]} for r in doc.get("rows", [])]
     return out
 
